@@ -1,8 +1,15 @@
-// @media (min-width: 768px) {
-//     .navbar {
-//         display: none;
-//     }
-//     .mobile-nav {
-//         display: block;
-//     }
-// }
+.navbar {
+	padding: 8px;
+}
+
+.menuLg {
+	@media (max-width: 700px) {
+		display: none;
+	}
+}
+
+.searchbar {
+	@media (max-width: 700px) {
+		display: none;
+	}
+}

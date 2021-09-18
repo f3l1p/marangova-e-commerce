@@ -1,7 +1,8 @@
 import React from "react";
 import "./navbar.scss";
 
-import { Row, Col, Menu, Input } from "antd";
+import { Link } from "react-router-dom";
+import { Row, Col, Menu, Input, Badge } from "antd";
 import { ShoppingOutlined } from "@ant-design/icons";
 
 const { Search } = Input;
@@ -18,39 +19,67 @@ const Navbar = () => {
 
 	return (
 		<div className="navbar">
-			<Row justify="space-around">
+			<Row justify="space-around" align="middle">
 				<Col span={4} offset={0}>
-					<h2>MARANGOVA</h2>
+					<Link to="/">
+						<h2>MARANGOVA</h2>
+					</Link>
 				</Col>
 				<Col span={8}>
-					<Menu
-						onClick={handleClick}
-						// selectedKeys={[current]}
-						mode="horizontal"
-					>
-						<Menu.Item key="home">Inicio</Menu.Item>
-						<Menu.Item key="store">Tienda</Menu.Item>
-						<SubMenu key="SubMenu" title="Categorias">
-							<Menu.Item key="setting:1">Aretes</Menu.Item>
-							<Menu.Item key="setting:2">Collares</Menu.Item>
-							<Menu.Item key="setting:2">Sujetadores</Menu.Item>
-							<Menu.Item key="setting:2">Turbantes</Menu.Item>
-						</SubMenu>
-						<Menu.Item key="knowUs">Nosotros</Menu.Item>
-						<Menu.Item key="contact">Contacto</Menu.Item>
-					</Menu>
+					<div className="menuLg">
+						<Menu
+							onClick={handleClick}
+							// selectedKeys={[current]}
+							mode="horizontal"
+						>
+							<Menu.Item key="home">
+								<Link to="/">Inicio</Link>
+							</Menu.Item>
+
+							<Menu.Item key="store">
+								<Link to="/store">Tienda</Link>
+							</Menu.Item>
+							<SubMenu key="SubMenu" title="Categorias">
+								<Menu.Item key="setting:1">
+									<Link to="/category/aretes">Aretes</Link>
+								</Menu.Item>
+								<Menu.Item key="setting:2">
+									<Link to="/category/collares">Collares</Link>
+								</Menu.Item>
+								<Menu.Item key="setting:3">
+									<Link to="/category/sujetadores">Sujetadores</Link>
+								</Menu.Item>
+								<Menu.Item key="setting:4">
+									<Link to="/category/turbantes">Turbantes</Link>
+								</Menu.Item>
+							</SubMenu>
+
+							<Menu.Item key="knowUs">
+								<Link to="/about">Nosotros</Link>
+							</Menu.Item>
+							<Menu.Item key="contact">
+								<Link to="/contact">Contacto</Link>
+							</Menu.Item>
+						</Menu>
+					</div>
 				</Col>
 				<Row justify="space-between">
-					<Col span={1}>
-						<Search
-							placeholder="input search text"
-							onSearch={onSearch}
-							style={{ width: 200 }}
-						/>
-					</Col>
+					<div className="searchbar">
+						<Col span={1}>
+							<Search
+								placeholder="input search text"
+								onSearch={onSearch}
+								style={{ width: 200 }}
+							/>
+						</Col>
+					</div>
 
 					<Col span={1}>
-						<ShoppingOutlined style={{ fontSize: "28px" }} />
+						<Link to="/cart">
+							<Badge count={1}>
+								<ShoppingOutlined style={{ fontSize: "28px" }} />
+							</Badge>
+						</Link>
 					</Col>
 				</Row>
 			</Row>
