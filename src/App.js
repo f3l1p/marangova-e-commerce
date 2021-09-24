@@ -12,32 +12,36 @@ import Cart from "./components/pages/cart/cart";
 import ItemDetailContainer from "./components/item/itemDetailContainer/itemDetailContainer";
 import ItemListContainer from "./components/itemListContainer/itemListContainer/itemListContainer";
 
+import { CartContext } from "./context/cartContext";
+
 function App() {
 	return (
-		<Router>
-			<div className="App">
-				<Navbar />
-				<Switch>
-					<Route exact path="/" component={Home} />
-					<Route path="/store" component={Store} />
-					<Route path="/about" component={About} />
-					<Route path="/contact" component={Contact} />
-					<Route path="/cart" component={Cart} />
-					<Route
-						path="/detail/:idDetail"
-						exact
-						component={ItemDetailContainer}
-					/>
-					<Route
-						path="/category/:idCategory"
-						exact
-						component={ItemListContainer}
-					/>
-				</Switch>
-				<WhatsappLink />
-				<p> footer </p>
-			</div>
-		</Router>
+		<CartContext>
+			<Router>
+				<div className="App">
+					<Navbar />
+					<Switch>
+						<Route exact path="/" component={Home} />
+						<Route path="/store" component={Store} />
+						<Route path="/about" component={About} />
+						<Route path="/contact" component={Contact} />
+						<Route path="/cart" component={Cart} />
+						<Route
+							path="/category/:idCategory"
+							exact
+							component={ItemListContainer}
+						/>
+						<Route
+							path="/detail/:idDetail"
+							exact
+							component={ItemDetailContainer}
+						/>
+					</Switch>
+					<WhatsappLink />
+					<p> footer </p>
+				</div>
+			</Router>
+		</CartContext>
 	);
 }
 

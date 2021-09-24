@@ -1,59 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./itemListContainer.scss";
 import { useParams, Link } from "react-router-dom";
-import Item from "../../item/item";
 import { Row, Col } from "antd";
 
-const productList = [
-	{
-		id: "1",
-		name: "arete 1",
-		price: "0,00",
-		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photo: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-		category: "aretes",
-	},
-	{
-		id: "2",
-		name: "arete 2",
-		price: "0,00",
-		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photo: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-		category: "aretes",
-	},
-	{
-		id: "3",
-		name: "pulsera",
-		price: "0,00",
-		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photo: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-		category: "pulseras",
-	},
-	{
-		id: "4",
-		name: "turbante",
-		price: "0,00",
-		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photo: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-		category: "turbantes",
-	},
-	{
-		id: "5",
-		name: "collar",
-		price: "0,00",
-		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photo: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-		category: "collares",
-	},
-	{
-		id: "6",
-		name: "sujetador",
-		price: "0,00",
-		description: "lorem ipsum lorem ipsum lorem ipsum lorem ipsum ",
-		photo: "https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png",
-		category: "sujetadores",
-	},
-];
+import Item from "../../item/item";
+import productList from "../../../productData";
 
 const ItemListContainer = () => {
 	const [product, setProduct] = useState([]);
@@ -74,7 +25,6 @@ const ItemListContainer = () => {
 		if (idCategory) {
 			getFetch.then((res) => {
 				const filtered = res.filter((prod) => prod.category === idCategory);
-				console.log(filtered);
 				setProduct(filtered);
 			});
 		} else {
