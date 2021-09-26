@@ -12,11 +12,11 @@ import Cart from "./components/pages/cart/cart";
 import ItemDetailContainer from "./components/item/itemDetailContainer/itemDetailContainer";
 import ItemListContainer from "./components/itemListContainer/itemListContainer/itemListContainer";
 
-import { CartContext } from "./context/cartContext";
+import { CartContextProvider } from "./context/cartContext";
 
 function App() {
 	return (
-		<CartContext>
+		<CartContextProvider>
 			<Router>
 				<div className="App">
 					<Navbar />
@@ -41,8 +41,10 @@ function App() {
 					<p> footer </p>
 				</div>
 			</Router>
-		</CartContext>
+		</CartContextProvider>
 	);
 }
 
 export default App;
+
+//cart.reduce((acc, element) => (acá va la suma), 0)

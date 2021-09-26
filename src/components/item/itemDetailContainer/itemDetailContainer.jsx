@@ -1,44 +1,52 @@
 import React, { useState, useEffect } from "react";
 import ItemDetail from "../itemDetail/itemDetail";
 import { useParams } from "react-router-dom";
-import productData from "../../../productData";
+import { getFirestore } from "../../../services/getFirebase";
+
+import { Spin } from "antd";
 
 const ItemDetailContainer = () => {
 	const [item, setItem] = useState({});
+	const [loading, setLoading] = useState(true);
 	const { idDetail } = useParams();
 
 	useEffect(() => {
-		const getFetchProduct = new Promise((resolve, reject) => {
-			let condition = "200";
-			if (condition === "200") {
-				setTimeout(() => {
-					resolve(productData);
-				}, 2000);
-			} else {
-				reject("404");
-			}
-		});
+		const dbQuery = getFirestore();
 
 		if (idDetail) {
-			getFetchProduct.then((prod) => {
-				const productDetail = prod.find((prod) => prod.id === idDetail);
-				setItem(productDetail);
-				console.log(productDetail);
-			});
+			dbQuery
+				.collection("items")
+				.get()
+				.then((data) => {
+					//console.log(data.docs);
+					const productDetail = data.docs.find((prod) => prod.id === idDetail);
+
+					const productData = { id: productDetail.id, ...productDetail.data() };
+					//console.log(productData);
+					setItem(productData);
+					setLoading(false);
+				});
 		} else {
-			<h1>nothing found</h1>;
+			<h1>parece que algo salio mal...</h1>;
 		}
 	}, [idDetail]);
 
+	console.log(item);
+
 	return (
 		<div>
-			<ItemDetail
-				photo={item.photo}
-				name={item.name}
-				price={item.price}
-				category={item.category}
-				description={item.description}
-			/>
+			{loading ? (
+				<Spin size="large" />
+			) : (
+				<ItemDetail
+					photo={item.photo}
+					name={item.name}
+					price={item.price}
+					category={item.category}
+					description={item.description}
+					item={item}
+				/>
+			)}
 		</div>
 	);
 };

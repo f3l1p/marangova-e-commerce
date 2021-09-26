@@ -76,7 +76,7 @@ const Navbar = () => {
 
 					<Col span={1}>
 						<Link to="/cart">
-							<Badge count={1}>
+							<Badge count={0}>
 								<ShoppingOutlined style={{ fontSize: "28px" }} />
 							</Badge>
 						</Link>
