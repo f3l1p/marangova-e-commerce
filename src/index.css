@@ -1,13 +1,23 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+	font-family: "rosarina";
+	src: local("rosarina"), url(./fonts//rosarina.ttf), format(truetype);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+	font-family: "moon2.0";
+	font-style: normal;
+	font-weight: 400;
+	src: local("moon2.0-light"), local("moon2.0-regular"),
+		local("moon2.0-bold") url(./fonts//Moon2.0-Light.otf) format("opentype"),
+		url(./fonts//Moon2.0-Regular.otf) format("opentype"),
+		url(./fonts/Moon2.0-Bold.otf) format("opentype");
+}
+html {
+	font-family: "moon2.0", sans-serif;
+}
+body {
+	margin: 0;
+	font-family: "moon2.0", serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }

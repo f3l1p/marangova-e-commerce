@@ -4,6 +4,7 @@ import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import WhatsappLink from "./components/UI/whatsappLink/waAccess";
 import Navbar from "./components/navbar/navbar";
+import Footer from "./components/footer/footer.jsx";
 import Home from "./components/pages/home/home";
 import Store from "./components/pages/store/store";
 import About from "./components/pages/about/about";
@@ -37,8 +38,8 @@ function App() {
 							component={ItemDetailContainer}
 						/>
 					</Switch>
+					<Footer />
 					<WhatsappLink />
-					<p> footer </p>
 				</div>
 			</Router>
 		</CartContextProvider>

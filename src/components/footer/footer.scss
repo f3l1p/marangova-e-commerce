@@ -1,0 +1,16 @@
+.footer {
+	color: white;
+	list-style: none;
+	padding-top: 80px;
+	position: sticky;
+	background-color: #ffac8e;
+
+	ul {
+		list-style: none;
+
+		li {
+			font-size: 16px;
+			margin-bottom: 8px;
+		}
+	}
+}

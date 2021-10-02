@@ -15,8 +15,6 @@ const ItemListContainer = () => {
 	useEffect(() => {
 		const dbQuery = getFirestore();
 
-		console.log(dbQuery.collection("items").get());
-
 		dbQuery
 			.collection("items")
 			.get()

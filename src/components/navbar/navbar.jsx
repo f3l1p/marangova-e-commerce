@@ -4,6 +4,7 @@ import "./navbar.scss";
 import { Link } from "react-router-dom";
 import { Row, Col, Menu, Input, Badge } from "antd";
 import { ShoppingOutlined } from "@ant-design/icons";
+import { UseCartContext } from "../../context/cartContext";
 
 const { Search } = Input;
 const { SubMenu } = Menu;
@@ -16,6 +17,8 @@ const handleClick = () => {
 
 const Navbar = () => {
 	//const [current, setCurrent] = useState("");
+
+	const { productsInCart } = UseCartContext();
 
 	return (
 		<div className="navbar">
@@ -76,7 +79,7 @@ const Navbar = () => {
 
 					<Col span={1}>
 						<Link to="/cart">
-							<Badge count={0}>
+							<Badge count={productsInCart()}>
 								<ShoppingOutlined style={{ fontSize: "28px" }} />
 							</Badge>
 						</Link>
