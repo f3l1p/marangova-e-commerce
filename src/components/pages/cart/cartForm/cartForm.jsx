@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import { Form, Input, Divider, Button } from "antd";
 
-const CartForm = ({ total }) => {
+const CartForm = ({ total, formData, setFormData }) => {
 	const [form] = Form.useForm();
 	const [requiredMark, setRequiredMarkType] = useState("optional");
+
+	const handleOnChange = (e) => {
+		console.log(e.target.value);
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value,
+		});
+	};
+
+	console.log(formData);
 
 	const onRequiredTypeChange = ({ requiredMarkValue }) => {
 		setRequiredMarkType(requiredMarkValue);
@@ -18,6 +28,8 @@ const CartForm = ({ total }) => {
 				}}
 				onValuesChange={onRequiredTypeChange}
 				requiredMark={requiredMark}
+				// onFinish={}
+				onChange={handleOnChange}
 			>
 				<Form.Item
 					label="Nombre"
@@ -26,7 +38,7 @@ const CartForm = ({ total }) => {
 					tooltip="This is a required field"
 					rules={[{ required: true, message: "Porfavor, ingresa tu nombre!" }]}
 				>
-					<Input placeholder="nombre..." />
+					<Input value={setFormData.name} placeholder="nombre..." />
 				</Form.Item>
 				<Form.Item
 					label="Telefono"
@@ -37,7 +49,7 @@ const CartForm = ({ total }) => {
 						{ required: true, message: "Porfavor, ingresa tu telefono!" },
 					]}
 				>
-					<Input placeholder="xxx-xxx-xxxx" />
+					<Input value={formData.tel} placeholder="xxx-xxx-xxxx" />
 				</Form.Item>
 				<Form.Item
 					label="e-mail"
@@ -46,7 +58,7 @@ const CartForm = ({ total }) => {
 					tooltip="This is a required field"
 					rules={[{ required: true, message: "Porfavor, ingresa tu correo!" }]}
 				>
-					<Input placeholder="tu correo..." />
+					<Input value={formData.email} placeholder="tu correo..." />
 				</Form.Item>
 				<Divider />
 				<h1>TOTAL: ${total}</h1>

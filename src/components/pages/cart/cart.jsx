@@ -2,18 +2,23 @@ import React, { useState } from "react";
 import "./cart.scss";
 
 import { Link } from "react-router-dom";
-import { Row, Col, Divider, Empty, Button } from "antd";
+import { Row, Col, Divider, Empty, Button, Alert } from "antd";
 import { DeleteTwoTone } from "@ant-design/icons";
 import ItemCount from "../../item/itemCount/itemCount";
 import OrderSummary from "./orderSummary/orderSummary";
 import { UseCartContext } from "../../../context/cartContext";
-
+import { getFirestore } from "../../../services/getFirebase";
 import "firebase/firestore";
 
 const Cart = ({ item }) => {
 	const { cart, clearCart, removeItem, totalPrice } = UseCartContext();
 	const [quantity, setQuantity] = useState(1);
 	const { addItem } = UseCartContext();
+	const [formData, setFormData] = useState({
+		name: "",
+		tel: "",
+		email: "",
+	});
 
 	// function onChangeValue(value) {
 	// 	setQuantity(value);
@@ -23,6 +28,41 @@ const Cart = ({ item }) => {
 	// const onAdd = (qty) => {
 	// 	addItem(item, qty);
 	// };
+
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+
+		let order = {};
+
+		//order.date = firebase.getFirestore.Timestap.fromDate(new Date());
+
+		order.buyer = formData;
+
+		order.total = totalPrice();
+
+		order.items = cart.map((cartItem) => {
+			const id = cartItem.item.id;
+			const title = cartItem.item.title;
+			const price = cartItem.item.price * cartItem.quantity;
+
+			return { id, title, price };
+		});
+
+		const db = getFirestore();
+
+		db.collection("orders")
+			.add(order)
+			.then((res) => (
+				<Alert message={"orden completa" + res.id} type="success" />
+			))
+			.finally(() =>
+				setFormData({
+					name: "",
+					tel: "",
+					email: "",
+				})
+			);
+	};
 
 	return (
 		<section
@@ -83,7 +123,11 @@ const Cart = ({ item }) => {
 							<Button onClick={() => clearCart()}>Vaciar carrito</Button>
 						</div>
 					</Col>
-					<OrderSummary total={totalPrice()} />
+					<OrderSummary
+						formData={formData}
+						setFormData={setFormData}
+						total={totalPrice()}
+					/>
 				</Row>
 			)}
 		</section>

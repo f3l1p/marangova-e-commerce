@@ -53,7 +53,6 @@ export const CartContextProvider = ({ children }) => {
 		);
 	};
 
-	console.log(cart);
 	return (
 		<CartContext.Provider
 			value={{
