@@ -3,7 +3,7 @@ import { Row, Col } from "antd";
 
 const About = () => {
 	return (
-		<section style={{ height: "80%", margin: "100px", textAlign: "center" }}>
+		<section style={{ height: "80vh", margin: "100px", textAlign: "center" }}>
 			<Row>
 				<h1>Sobre Nosotros</h1>
 			</Row>

@@ -1,10 +1,15 @@
 import React from "react";
+import "./contact.scss";
 import { Row, Col } from "antd";
 
 const Contact = () => {
 	return (
 		<>
-			<section style={{ height: "85%", margin: "100px", textAlign: "center" }}>
+			<section
+				className=".contact-section {
+					"
+				style={{ height: "85vh", margin: "100px", textAlign: "center" }}
+			>
 				<Row>
 					<h1>Contact Us</h1>
 					<p>

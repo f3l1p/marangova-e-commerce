@@ -9,32 +9,20 @@ import OrderSummary from "./orderSummary/orderSummary";
 import { UseCartContext } from "../../../context/cartContext";
 import { getFirestore } from "../../../services/getFirebase";
 import "firebase/firestore";
+import firebase from "firebase/app";
 
 const Cart = ({ item }) => {
 	const { cart, clearCart, removeItem, totalPrice } = UseCartContext();
-	const [quantity, setQuantity] = useState(1);
-	const { addItem } = UseCartContext();
+
 	const [formData, setFormData] = useState({
 		name: "",
 		tel: "",
 		email: "",
 	});
 
-	// function onChangeValue(value) {
-	// 	setQuantity(value);
-	// 	addItem(item, value);
-	// }
-
-	// const onAdd = (qty) => {
-	// 	addItem(item, qty);
-	// };
-
 	const handleOnSubmit = (e) => {
-		e.preventDefault();
-
 		let order = {};
-
-		//order.date = firebase.getFirestore.Timestap.fromDate(new Date());
+		order.date = firebase.firestore.Timestamp.fromDate(new Date());
 
 		order.buyer = formData;
 
@@ -42,7 +30,7 @@ const Cart = ({ item }) => {
 
 		order.items = cart.map((cartItem) => {
 			const id = cartItem.item.id;
-			const title = cartItem.item.title;
+			const title = cartItem.item.name;
 			const price = cartItem.item.price * cartItem.quantity;
 
 			return { id, title, price };
@@ -52,9 +40,7 @@ const Cart = ({ item }) => {
 
 		db.collection("orders")
 			.add(order)
-			.then((res) => (
-				<Alert message={"orden completa" + res.id} type="success" />
-			))
+			.then((res) => alert("orden completa" + " " + res.id))
 			.finally(() =>
 				setFormData({
 					name: "",
@@ -127,6 +113,7 @@ const Cart = ({ item }) => {
 						formData={formData}
 						setFormData={setFormData}
 						total={totalPrice()}
+						handleOnSubmit={handleOnSubmit}
 					/>
 				</Row>
 			)}

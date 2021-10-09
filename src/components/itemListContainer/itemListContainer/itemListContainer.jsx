@@ -58,7 +58,7 @@ const ItemListContainer = () => {
 	};
 
 	return (
-		<div className="productcontainer">
+		<div style={{ height: "85vh" }} className="productcontainer">
 			{loading ? (
 				<>
 					<Spin size="large" />

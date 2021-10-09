@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Divider } from "antd";
 import CartForm from "../cartForm/cartForm";
 
-const OrderSummary = ({ total, formData, setFormData }) => {
+const OrderSummary = ({ total, formData, setFormData, handleOnSubmit }) => {
 	return (
 		<>
 			<Col span={8}>
@@ -13,6 +13,7 @@ const OrderSummary = ({ total, formData, setFormData }) => {
 						formData={formData}
 						setFormData={setFormData}
 						total={total}
+						handleOnSubmit={handleOnSubmit}
 					/>
 				</div>
 			</Col>

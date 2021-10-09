@@ -25,7 +25,7 @@ const ItemDetail = ({ item }) => {
 	console.log(quantity);
 
 	return (
-		<div style={{ textAlign: "center", marginTop: "80px" }}>
+		<div style={{ height: "85vh", textAlign: "center", marginTop: "80px" }}>
 			<Row>
 				<Col span={12}>
 					<img alt="product-img" src={item.photo} style={{ height: "500px" }} />
