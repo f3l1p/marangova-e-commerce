@@ -3,7 +3,7 @@ import ItemListContainer from "../../itemListContainer/itemListContainer/itemLis
 
 const Store = () => {
 	return (
-		<section>
+		<section style={{ height: "100vh" }}>
 			<ItemListContainer />
 		</section>
 	);

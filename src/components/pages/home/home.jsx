@@ -2,13 +2,20 @@ import React from "react";
 import "./home.scss";
 import ItemListContainer from "../../itemListContainer/itemListContainer/itemListContainer";
 import banner from "../../../assets/banner-1.jpg";
+import { useSpring, animated } from "react-spring";
 
 const Home = () => {
+	const slide = useSpring({
+		from: { y: 100, opacity: 0 },
+		to: { y: 0, opacity: 1 },
+		delay: 800,
+	});
+
 	return (
-		<div>
-			<section className="banner-section">
+		<div className="home">
+			<animated.section style={slide} className="banner-section">
 				<img className="banner" alt="banner" src={banner} />
-			</section>
+			</animated.section>
 
 			<section
 				style={{

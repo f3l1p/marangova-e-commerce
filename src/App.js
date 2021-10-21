@@ -21,23 +21,25 @@ function App() {
 			<Router>
 				<div className="App">
 					<Navbar />
-					<Switch>
-						<Route exact path="/" component={Home} />
-						<Route path="/store" component={Store} />
-						<Route path="/about" component={About} />
-						<Route path="/contact" component={Contact} />
-						<Route path="/cart" component={Cart} />
-						<Route
-							path="/category/:idCategory"
-							exact
-							component={ItemListContainer}
-						/>
-						<Route
-							path="/detail/:idDetail"
-							exact
-							component={ItemDetailContainer}
-						/>
-					</Switch>
+					<div className="content">
+						<Switch>
+							<Route exact path="/" component={Home} />
+							<Route path="/store" component={Store} />
+							<Route path="/about" component={About} />
+							<Route path="/contact" component={Contact} />
+							<Route path="/cart" component={Cart} />
+							<Route
+								path="/category/:idCategory"
+								exact
+								component={ItemListContainer}
+							/>
+							<Route
+								path="/detail/:idDetail"
+								exact
+								component={ItemDetailContainer}
+							/>
+						</Switch>
+					</div>
 					<Footer />
 					<WhatsappLink />
 				</div>
@@ -47,5 +49,3 @@ function App() {
 }
 
 export default App;
-
-//cart.reduce((acc, element) => (acá va la suma), 0)

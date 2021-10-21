@@ -1,9 +1,12 @@
 .footer {
 	color: white;
 	list-style: none;
-	padding-top: 80px;
-	position: sticky;
+	padding-top: 4vh;
 	background-color: #ffac8e;
+
+	position: relative;
+	width: 100vw;
+	bottom: 0px;
 
 	ul {
 		list-style: none;

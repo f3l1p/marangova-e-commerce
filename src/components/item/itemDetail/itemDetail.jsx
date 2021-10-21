@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 
 import { Row, Col, Button } from "antd";
-
 import { Link } from "react-router-dom";
 import { UseCartContext } from "../../../context/cartContext";
-
 import ItemCount from "../itemCount/itemCount";
+import { animated, useSpring } from "react-spring";
 
 const ItemDetail = ({ item }) => {
 	const [but, setBut] = useState(false);
 	const [quantity, setQuantity] = useState(1);
 
 	const { addItem } = UseCartContext();
+
+	const slide = useSpring({
+		from: { y: 100, opacity: 0 },
+		to: { y: 0, opacity: 1 },
+		delay: 800,
+	});
 
 	function onChangeValue(value) {
 		setQuantity(value);
@@ -25,24 +30,29 @@ const ItemDetail = ({ item }) => {
 	console.log(quantity);
 
 	return (
-		<div style={{ height: "85vh", textAlign: "center", marginTop: "80px" }}>
-			<Row>
-				<Col span={12}>
-					<img alt="product-img" src={item.photo} style={{ height: "500px" }} />
-				</Col>
-				<Col span={12}>
-					<h2>{item.name}</h2>
-					<p>{item.description}</p>
-					<p>{item.category}</p>
-					<h3>${item.price}</h3>
-					<Row>
-						<p style={{ margin: "9px" }}>
-							<strong>cantidad:</strong>
-						</p>
-						<ItemCount onChangeValue={onChangeValue} />
-					</Row>
+		<animated.div style={slide}>
+			<div style={{ height: "85vh", textAlign: "center", marginTop: "80px" }}>
+				<Row>
+					<Col md={12}>
+						<img
+							alt="product-img"
+							src={item.photo}
+							style={{ height: "500px" }}
+						/>
+					</Col>
+					<Col span={12}>
+						<h2>{item.name}</h2>
+						<p>{item.description}</p>
+						<p>{item.category}</p>
+						<h3>${item.price}</h3>
+						<br />
+						<div>
+							<p style={{ margin: "9px" }}>
+								<strong>cantidad:</strong>
+							</p>
+							<ItemCount onChangeValue={onChangeValue} />
+						</div>
 
-					<Row>
 						{but === false ? (
 							<>
 								<Button
@@ -64,10 +74,10 @@ const ItemDetail = ({ item }) => {
 								</Button>
 							</Link>
 						)}
-					</Row>
-				</Col>
-			</Row>
-		</div>
+					</Col>
+				</Row>
+			</div>
+		</animated.div>
 	);
 };
 

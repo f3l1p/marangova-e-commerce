@@ -2,17 +2,26 @@ import React, { useState } from "react";
 import "./cart.scss";
 
 import { Link } from "react-router-dom";
-import { Row, Col, Divider, Empty, Button, Alert } from "antd";
-import { DeleteTwoTone } from "@ant-design/icons";
-import ItemCount from "../../item/itemCount/itemCount";
+import { Row, Col, Divider, Empty, Button, Modal } from "antd";
 import OrderSummary from "./orderSummary/orderSummary";
+import CartProduct from "./cartProduct/cartProduct";
 import { UseCartContext } from "../../../context/cartContext";
 import { getFirestore } from "../../../services/getFirebase";
 import "firebase/firestore";
 import firebase from "firebase/app";
 
-const Cart = ({ item }) => {
-	const { cart, clearCart, removeItem, totalPrice } = UseCartContext();
+const Cart = () => {
+	const { cart, setCart, clearCart, totalPrice } = UseCartContext();
+	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [modalContent, setModalContent] = useState();
+
+	const handleOk = () => {
+		setIsModalVisible(false);
+	};
+
+	const handleCancel = () => {
+		setIsModalVisible(false);
+	};
 
 	const [formData, setFormData] = useState({
 		name: "",
@@ -23,11 +32,8 @@ const Cart = ({ item }) => {
 	const handleOnSubmit = (e) => {
 		let order = {};
 		order.date = firebase.firestore.Timestamp.fromDate(new Date());
-
 		order.buyer = formData;
-
 		order.total = totalPrice();
-
 		order.items = cart.map((cartItem) => {
 			const id = cartItem.item.id;
 			const title = cartItem.item.name;
@@ -40,8 +46,14 @@ const Cart = ({ item }) => {
 
 		db.collection("orders")
 			.add(order)
-			.then((res) => alert("orden completa" + " " + res.id))
-			.finally(() =>
+			.then((res) => {
+				setIsModalVisible(true);
+
+				setModalContent("Orden Num: " + res.id);
+			})
+
+			.finally(
+				() => setCart([]),
 				setFormData({
 					name: "",
 					tel: "",
@@ -55,6 +67,16 @@ const Cart = ({ item }) => {
 			className="cart-section"
 			style={{ margin: "80px", textAlign: "center" }}
 		>
+			<Modal
+				title="Numero de Orden"
+				visible={isModalVisible}
+				onOk={handleOk}
+				onCancel={handleCancel}
+			>
+				<p>{modalContent}</p>
+				<br />
+				<p>Gracias por tu compra!</p>
+			</Modal>
 			{cart.length === 0 ? (
 				<>
 					<Row>
@@ -69,37 +91,15 @@ const Cart = ({ item }) => {
 					</Row>
 				</>
 			) : (
-				<Row>
-					<Col span={16}>
+				<Row gutter={[16, 16]}>
+					<Col sm={24} md={14}>
 						<div className="order-wrapper">
 							<h3>CARRITO DE COMPRAS</h3>
 							<Divider />
 							{cart.map((prod) => {
 								return (
 									<>
-										<Row>
-											<Col span={5}>
-												<img
-													alt="product"
-													style={{ height: "200px" }}
-													src={prod.item.photo}
-												/>
-											</Col>
-											<Col span={5}>
-												<h2>{prod.item.name}</h2>
-											</Col>
-											<Col span={5}>
-												<ItemCount />
-											</Col>
-											<Col span={5}>
-												<p>{prod.item.price}</p>
-											</Col>
-											<Col span={4}>
-												<Button onClick={() => removeItem(prod.item.id)}>
-													<DeleteTwoTone style={{ fontSize: "25px" }} />
-												</Button>
-											</Col>
-										</Row>
+										<CartProduct prod={prod} />
 										<br />
 									</>
 								);
@@ -107,14 +107,17 @@ const Cart = ({ item }) => {
 							<Divider />
 
 							<Button onClick={() => clearCart()}>Vaciar carrito</Button>
+							<br />
 						</div>
 					</Col>
-					<OrderSummary
-						formData={formData}
-						setFormData={setFormData}
-						total={totalPrice()}
-						handleOnSubmit={handleOnSubmit}
-					/>
+					<Col sm={10} md={10}>
+						<OrderSummary
+							formData={formData}
+							setFormData={setFormData}
+							total={totalPrice()}
+							handleOnSubmit={handleOnSubmit}
+						/>
+					</Col>
 				</Row>
 			)}
 		</section>

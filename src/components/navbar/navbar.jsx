@@ -2,22 +2,17 @@ import React from "react";
 import "./navbar.scss";
 
 import { Link } from "react-router-dom";
-import { Row, Col, Menu, Input, Badge } from "antd";
+import { Row, Col, Menu, Badge } from "antd";
 import { ShoppingOutlined } from "@ant-design/icons";
 import { UseCartContext } from "../../context/cartContext";
 
-const { Search } = Input;
 const { SubMenu } = Menu;
-
-const onSearch = (value) => console.log(value);
 
 const handleClick = () => {
 	//
 };
 
 const Navbar = () => {
-	//const [current, setCurrent] = useState("");
-
 	const { productsInCart } = UseCartContext();
 
 	return (
@@ -28,7 +23,7 @@ const Navbar = () => {
 						<h2>MARANGOVA</h2>
 					</Link>
 				</Col>
-				<Col span={8}>
+				<Col md={10}>
 					<div className="menuLg">
 						<Menu
 							onClick={handleClick}
@@ -67,7 +62,7 @@ const Navbar = () => {
 					</div>
 				</Col>
 				<Row justify="space-between">
-					<div className="searchbar">
+					{/* <div className="searchbar">
 						<Col span={1}>
 							<Search
 								placeholder="input search text"
@@ -75,9 +70,9 @@ const Navbar = () => {
 								style={{ width: 200 }}
 							/>
 						</Col>
-					</div>
+					</div> */}
 
-					<Col span={1}>
+					<Col md={1}>
 						<Link to="/cart">
 							<Badge count={productsInCart()}>
 								<ShoppingOutlined style={{ fontSize: "28px" }} />

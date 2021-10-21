@@ -1,28 +1,37 @@
-.banner-section {
-	margin: 0;
-	text-align: center;
-	.banner {
-		height: 80%;
-		margin-left: 8%;
-		margin-right: 10%;
-	}
-}
-.category-section {
-	text-align: center;
-	margin: 0;
-
-	.wrapper-circle {
+.home {
+	.banner-section {
+		margin: 0;
 		text-align: center;
+		.banner {
+			//height: 80vh;
+			width: 80vw;
+		}
 	}
-	.circle {
+	.category-section {
 		text-align: center;
-		vertical-align: middle;
-		width: 150px;
-		height: 150px;
+		margin: 0;
 
-		background-color: white;
-		border-radius: 50%;
+		.wrapper-circle {
+			text-align: center;
+		}
+		.circle {
+			text-align: center;
+			vertical-align: middle;
+			width: 150px;
+			height: 150px;
 
-		border: 1px solid #000;
+			background-color: white;
+			border-radius: 50%;
+
+			border: 1px solid #000;
+		}
+	}
+
+	@media only screen and (max-width: 600px) {
+		.banner-section {
+			.banner {
+				width: 100vw;
+			}
+		}
 	}
 }

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./itemListContainer.scss";
-import { useParams, Link } from "react-router-dom";
-import { Row, Col, Spin } from "antd";
-
-import Item from "../../item/item";
+import { useParams } from "react-router-dom";
+import { Spin, Row, Col } from "antd";
+import ItemList from "../itemList/itemList";
 import { getFirestore } from "../../../services/getFirebase";
 
 const ItemListContainer = () => {
@@ -36,35 +35,18 @@ const ItemListContainer = () => {
 			.finally(() => setLoading(false));
 	}, [idCategory]);
 
-	const ItemList = () => {
-		return (
-			<>
-				<Row gutter={[16, 16]}>
-					{product.map((product) => (
-						<Col span={6} key={product.id}>
-							<Link to={`/detail/${product.id}`}>
-								<Item
-									key={product.id}
-									title={product.name}
-									price={product.price}
-									photo={product.photo}
-								/>
-							</Link>
-						</Col>
-					))}
-				</Row>
-			</>
-		);
-	};
-
 	return (
 		<div style={{ height: "85vh" }} className="productcontainer">
 			{loading ? (
-				<>
-					<Spin size="large" />
-				</>
+				<Row style={{ height: "100vh", textAlign: "center" }}>
+					<Col span={24}>
+						<Spin size="large" />
+					</Col>
+				</Row>
 			) : (
-				<ItemList />
+				<div>
+					<ItemList product={product} />
+				</div>
 			)}
 		</div>
 	);

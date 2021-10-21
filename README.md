@@ -1,3 +1,27 @@
+# marangova-e-commerce
+
+E-commerce created with [Create-react-app]
+
+# DEMO
+
+Link : ()
+
+# External libraries
+
+[Ant-Design] - To provide pre-developed components that facilitate the development of the app.
+[Firebase] - Library of services that allows us to work on the Front-end without worrying about a back-end.
+[React-router-dom] - Used for the navigation system between pages.
+[React-spring] - Library used for improve the UX with animation in some components.
+
+# Installation
+
+Marangova-e-commerce requieres Node.js to run.
+
+Install the dependencies and start the server.
+
+cd marangova-e-commerce
+npm install
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,7 +92,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# marangova-e-commerce
-# marangova-e-commerce
-# marangova-e-commerce
-# marangova-e-commerce
