@@ -9,9 +9,13 @@ Link : (https://xenodochial-kalam-9331c8.netlify.app)
 # External libraries
 
 [Ant-Design] - To provide pre-developed components that facilitate the development of the app.
+
 [Firebase] - Library of services that allows us to work on the Front-end without worrying about a back-end.
+
 [React-router-dom] - Used for the navigation system between pages.
+
 [React-spring] - Library used for improve the UX with animation in some components.
+
 
 # Installation
 
