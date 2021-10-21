@@ -4,7 +4,7 @@ E-commerce created with [Create-react-app]
 
 # DEMO
 
-Link : ()
+Link : (https://xenodochial-kalam-9331c8.netlify.app)
 
 # External libraries
 
