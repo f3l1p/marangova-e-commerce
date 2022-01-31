@@ -4,7 +4,7 @@ E-commerce created with [Create-react-app]
 
 # DEMO
 
-Link : (https://marangova.netlify.app/.netlify.app)
+Link : (https://marangova.netlify.app)
 
 # External libraries
 
